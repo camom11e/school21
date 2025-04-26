@@ -15,7 +15,8 @@ async function fetchToken() {
       }),
       {
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
+          'Accept': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
         }
       }
     );
@@ -26,7 +27,7 @@ async function fetchToken() {
   }
 }
 
-setTimeout(() => fetchToken(), 2000)
+setTimeout(() => fetchToken(), 3000)
 
 // Экспортируем функцию обновления токена (при необходимости)
 module.exports = {
