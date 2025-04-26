@@ -10,20 +10,44 @@ async function fetchSkills() {
     try {
       const response = await axios.get(
         `${process.env.BASE_URL}v1/participants/${user.name_login}/skills`,
-        { headers: { Authorization: `Bearer ${token}` } }
+        { 
+          headers: { 
+            Authorization: `Bearer ${token}`,
+            'Accept': 'application/json'
+          }
+        }
       );
 
-      // Сохранение навыков
+      // Логируем полный ответ API
+      console.log('Получены навыки:', JSON.stringify(response.data, null, 2));
+
+      // Проверка структуры ответа
+      if (!response.data?.skills) {
+        console.log(`Нет навыков для ${user.name_login}`);
+        continue;
+      }
+
+      // Удаляем предыдущие записи
+      db.prepare('DELETE FROM skills WHERE name_login = ?')
+        .run(user.name_login);
+
+      // Вставляем новые навыки
       response.data.skills.forEach(skill => {
         db.prepare(`
           INSERT INTO skills (name_login, skill_name, skill_level)
           VALUES (?, ?, ?)
-        `).run(user.name_login, skill.name, skill.level);
+        `).run(
+          user.name_login,
+          skill.name,
+          skill.points // Используем points из API
+        );
       });
       
-      console.log(`Обновлены навыки для ${user.name_login}`);
+      console.log(`Успешно обновлено: ${user.name_login}`);
+      
     } catch (e) {
-      console.error(`Ошибка для ${user.name_login}:`, e.message);
+      console.error(`Ошибка для ${user.name_login}:`, e.response?.data || e.message);
+      await new Promise(resolve => setTimeout(resolve, 1000));
     }
   }
 }
@@ -36,9 +60,17 @@ async function getAuthToken() {
       username: process.env.SCHOOL_LOGIN,
       password: process.env.SCHOOL_PASSWORD,
       grant_type: 'password'
-    })
+    }),
+    {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    }
   );
   return response.data.access_token;
 }
 
-fetchSkills().finally(() => db.close());
+
+fetchSkills()
+  .catch(console.error)
+  .finally(() => db.close());
