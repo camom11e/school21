@@ -7,7 +7,7 @@ db.pragma('journal_mode = WAL');
 
 // Чтение CSV
 fs.createReadStream(path.join(__dirname, '../users2.csv'))
-  .pipe(csv({ separator: ';' }))
+  .pipe(csv({ separator: ',' }))
   .on('data', (row) => {
     try {
       db.prepare(`
