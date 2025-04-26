@@ -1,0 +1,149 @@
+/* Reset and base styles */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Arial', sans-serif;
+  }
+  
+  body {
+	background-color: #f5f7fa;
+  }
+  
+  /* Header styles */
+  header {
+	background-color: #1d2633;
+	padding: 15px 0;
+  }
+  
+  .header-container {
+	max-width: 1200px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 20px;
+  }
+  
+  .logo {
+	height: 40px;
+  }
+  
+  nav a {
+	color: white;
+	text-decoration: none;
+	margin: 0 15px;
+	font-size: 16px;
+  }
+  
+  nav a.active {
+	color: #00ffaf;
+	border-bottom: 2px solid #00ffaf;
+  }
+  
+  .icons img {
+	height: 24px;
+	margin-left: 15px;
+	cursor: pointer;
+  }
+  
+  /* Main content */
+  main {
+	max-width: 1200px;
+	margin: 30px auto;
+	padding: 0 20px;
+  }
+  
+  /* Filters */
+  .filters {
+	display: flex;
+	margin-bottom: 20px;
+	align-items: center;
+  }
+  
+  .filter-btn {
+	background: none;
+	border: none;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	margin-right: 20px;
+  }
+  
+  .filter-btn img {
+	height: 20px;
+	margin-right: 8px;
+  }
+  
+  .filter-content {
+	display: flex;
+	gap: 15px;
+  }
+  
+  #search {
+	padding: 8px 12px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	width: 200px;
+  }
+  
+  select, input[type="range"] {
+	padding: 8px;
+	border-radius: 4px;
+	border: 1px solid #ddd;
+  }
+  
+  /* Students grid */
+  .students-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	gap: 20px;
+  }
+  
+  .student-card {
+	background: white;
+	border-radius: 8px;
+	padding: 20px;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .student-card h3 {
+	margin-bottom: 10px;
+	color: #1d2633;
+  }
+  
+  .skills {
+	margin: 15px 0;
+  }
+  
+  .skill {
+	margin-bottom: 10px;
+  }
+  
+  .progress-bar {
+	height: 20px;
+	background: #eee;
+	border-radius: 10px;
+	margin-top: 5px;
+	overflow: hidden;
+  }
+  
+  .progress {
+	height: 100%;
+	background: #00ffaf;
+	color: white;
+	font-size: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  }
+  
+  .details-btn {
+	background: #1d2633;
+	color: white;
+	border: none;
+	padding: 8px 16px;
+	border-radius: 4px;
+	cursor: pointer;
+	width: 100%;
+  }

@@ -1,0 +1,45 @@
+doctype html
+html(lang="ru")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Student Selection
+    link(rel="stylesheet" href="/css/styles.css")
+
+  body
+    header
+      .header-container
+        img.logo(src="/images/logo.png" alt="School 21 Logo")
+        nav
+          a.active(href="#") Students
+          a(href="#") Projects
+        .icons
+          img(src="/images/notifications.png" alt="Notifications")
+          img.menu-icon(src="/images/menu.png" alt="Menu")
+
+    main
+      .filters
+        button.filter-btn#filter-btn
+          img(src="/images/menu.png" alt="Filters")
+          span Filters
+
+        .filter-content
+          input#search(type="text" placeholder="Search...")
+          select#skill
+            option(value="") All Skills
+            option(value="Python") Python
+            option(value="JavaScript") JavaScript
+          input#level(type="range" min="0" max="100" value="50")
+
+      .students-grid#students-container
+        each student in students
+          .student-card
+            h3= student.fullname
+            p= student.campus
+            .skills
+              each skill in student.skills
+                .skill
+                  span= skill.name
+                  .progress-bar
+                    .progress(style=`width: ${skill.level}%`)= `${skill.level}%`
+            button.details-btn View Details
