@@ -18,6 +18,7 @@ html(lang="ru")
           a(href="#") Activities
           a(href="#") More
         .icons
+          img(src="/image/lopa.png" alt="Lopa")
           img(src="/image/notifications.png" alt="Notifications")
           img.menu-icon(src="/image/menu.png" alt="Menu")
 
@@ -33,7 +34,7 @@ html(lang="ru")
                   .skill
                     span= skill.name
                     .progress-bar
-                      .progress(style=`width: ${skill.level}%`)= `${skill.level}%`
+                      .progress(style=`width: ${skill.level}%`)= `${skill.level}`
             button.details-btn(onclick=`openModal(${JSON.stringify(student.skills)})`) View Details
 
     // Модальное окно
