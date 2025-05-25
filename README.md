@@ -7,7 +7,7 @@
 
 ```bash
 # Клонировать репозиторий
-git clone https://github.com/yourusername/s21-internship-platform.git
+git clone https://github.com/camom11e/school21.git
 
 # Установить зависимости
 npm install
